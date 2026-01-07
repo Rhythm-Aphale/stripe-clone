@@ -26,8 +26,93 @@ const svgMap: { [key: string]: string } = {
   BMW: '/svg/bmw.svg',
   Amazon: '/svg/amazon.svg',
   Twilio: '/svg/twillo.svg',
-  Maersk: '/svg/maersk.svg',
+  Maersk: '/svg/amazon.svg',
+  Slack: '/svg/slack.svg',
+  Green: '/svg/Green Flag.svg',
+  Harri: '/svg/harri.webp',
+  ClickFunnels: '/svg/slack.svg',
 };
+
+const testimonials = [
+  {
+    id: 1,
+    company: 'ClickFunnels',
+    logo: '/svg/slack.svg',
+    quote: "Stripe Sigma has helped accelerate our financial close process. Instead of manually combining multiple data sources each month, we're now able to run a few simple queries in Sigma, enabling faster monthly reconciliation for credit card transactions.",
+    author: 'Kelly Hofmann',
+    role: ' Revenue Accounting',
+    bgColor: 'bg-gradient-to-br from-[#6E3A77]/85 to-[#6E3A77]/75',
+    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1600&h=900&fit=crop'
+  },
+  {
+    id: 2,
+    company: 'Green Flag',
+    logo: '/svg/Green Flag.svg',
+    quote: "Sigma gives us legitimate evidence to challenge a chargeback, whereas before Stripe, we had no visibility whatsoever. The new level of data and insight we can get out of Stripe compared to what we could get previously is just night and day. It really helped us improve and speed up our decision-making.",
+    author: 'Jez Bristow',
+    role: 'Chief Product Manager',
+    bgColor: 'bg-gradient-to-br from-[#6CCF60]/85 to-[#6CCF60]/75',
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=900&fit=crop'
+  },
+  {
+    id: 3,
+    company: 'Harri',
+    logo: '/svg/harri.webp',
+    quote: "With a query that took less than 5 minutes to write, our team has been able to identify unpaid invoices and recapture tens of thousands of dollars of revenue – 8 percent of failed payments – in just two months.",
+    author: 'Steven Moldavskiy',
+    role: 'Business Intelligence',
+    bgColor: 'bg-gradient-to-br from-[#1C7EE8]/85 to-[#1C7EE8]/75',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=900&fit=crop'
+  },
+  {
+    id: 4,
+    company: 'ClickFunnels',
+    logo: '/svg/slack.svg',
+    quote: "Before Stripe Sigma, we built our own tool to analyse our Stripe data, but it took our engineers weeks to build, required ongoing work to maintain and update and it wasn't always accurate. Sigma now gives all our teams accurate data without any engineering work.",
+    author: 'Tracy Rogers',
+    role: 'Data Scientist',
+    bgColor: 'bg-gradient-to-br from-[#E55039]/85 to-[#E55039]/75',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=900&fit=crop'
+  }
+];
+
+function TestimonialSlider() {
+  const [active, setActive] = useState(0);
+
+  return (
+    <div className="w-full">
+      <div className="relative">
+        <div className={`rounded-2xl overflow-hidden shadow-xl ${testimonials[active].bgColor}`}>
+          <div className="relative h-64 md:h-72 lg:h-80">
+            <img src={testimonials[active].image} alt={testimonials[active].company} className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40" />
+            <div className="absolute inset-0 p-8 md:p-12 flex items-center">
+              <div className="max-w-2xl text-white">
+                <blockquote className="text-21px md:text-xl lg:text-xl leading-relaxed mb-6">“{testimonials[active].quote}”</blockquote>
+                <div className="font-semibold">{testimonials[active].author}, <span className="font-normal">{testimonials[active].role}</span></div>
+              </div>
+              <div className="ml-auto hidden md:block">
+                <img src={testimonials[active].logo} alt={testimonials[active].company} className="h-50 filter brightness-0 invert" />
+              </div>
+            </div>
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3">
+              {testimonials.map((t, i) => (
+                <button key={t.id} onClick={() => setActive(i)} className={`w-8 h-1.5 rounded-full transition-all ${i === active ? 'bg-white' : 'bg-white/40'}`} aria-label={`Show testimonial ${i + 1}`} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 flex  gap-43 ">
+          {testimonials.map((t, i) => (
+            <button key={t.id} onClick={() => setActive(i)} className={`transition-all ${i === active ? 'grayscale-0 opacity-100 scale-110' : 'grayscale opacity-40'}`} aria-label={`Select ${t.company}`}>
+              <img src={t.logo} alt={t.company} className="h-40" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const caseStudies = [
   {
@@ -181,12 +266,11 @@ export default function HeroSection() {
                   unoptimized
                 />
                 {svgMap[activeStudy.company] ? (
-                  <Image
+                  <img
                     src={svgMap[activeStudy.company]}
                     alt={activeStudy.company}
-                    width={40}
-                    height={40}
-                    className="hidden h-10 filter brightness-0 invert"
+                    
+                    className="hidden h-30 filter brightness-0 invert"
                     onError={(e: any) => { (e.currentTarget as HTMLElement).style.display = 'none'; }}
                   />
                 ) : (
@@ -214,7 +298,7 @@ export default function HeroSection() {
 
           {/* Company Logos Navigation - Below the main content */}
           <div className=" mt-[-306] pt-12 border-t border-gray-200">
-            <div className="flex justify-center items-center gap-16">
+            <div className="flex justify-center items-center gap-43">
               {caseStudies.map((study, index) => (
                 <button
                   key={study.id}
@@ -231,14 +315,19 @@ export default function HeroSection() {
                   <img
                     src={svgMap[study.company] ?? study.logo}
                     alt={study.company}
-                    width={48}
-                    height={48}
-                    className={`h-12 transition-all ${activeIndex === index ? 'grayscale-0 opacity-100 scale-110' : 'grayscale opacity-30'}`}
+                    className={`h-25 transition-all ${activeIndex === index ? 'grayscale-0 opacity-100 scale-110' : 'grayscale opacity-30'}`}
                   />
                 </button>
               ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Testimonials Slider */}
+      <div className="w-full py-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <TestimonialSlider />
         </div>
       </div>
 
