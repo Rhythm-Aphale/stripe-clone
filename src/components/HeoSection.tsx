@@ -134,8 +134,8 @@ const caseStudies = [
     logo: "https://logo.clearbit.com/amazon.com",
     title: "See how Amazon simplified cross-border payments with Stripe",
     mainMetric: "5+",
-    mainMetricLabel: `Amazon businesses on Stripe including Prime,
-                      Audible, and Amazon Pay.`,
+    mainMetricLabel: `Amazon businesses on Stripe including 
+                      Prime,Audible, and Amazon Pay.`,
     secondaryMetric: "50+",
     secondaryMetricLabel: "Payment methods available on Stripe",
     products: ["Payments", "Connect"],
@@ -161,7 +161,8 @@ const caseStudies = [
     logo: "https://logo.clearbit.com/twilio.com",
     title: "See how Twilio increased authorisation rates by 10% with Stripe",
     mainMetric: "+5.5%",
-    mainMetricLabel: "Uplift from Stripe's Global Payments Infrastructure",
+    mainMetricLabel: `Uplift from Stripe's 
+                    Global Payments Infrastructure `,
     secondaryMetric: "+1%",
     secondaryMetricLabel: "Uplift from Adaptive Acceptance",
     products: ["Payments", "Stripe Sigma"],
@@ -213,7 +214,7 @@ export default function HeroSection() {
               <div className="space-y-8">
                 <div>
                   <div className="text-3xl font-bold text-gray-900">{activeStudy.mainMetric}</div>
-                  <div className="text-sm text-gray-500 mt-3 leading-relaxed text-wrap">{activeStudy.mainMetricLabel}</div>
+                  <div className="text-sm text-gray-500 mt-3 leading-relaxed text-wrap  whitespace-pre-line">{activeStudy.mainMetricLabel}</div>
                 </div>
                 <div>
                   <div className="text-3xl font-bold text-gray-900">{activeStudy.secondaryMetric}</div>
